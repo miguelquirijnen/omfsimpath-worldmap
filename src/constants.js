@@ -4,9 +4,11 @@ export const ANIMATION_DURATION = 0.5; // in seconds
 
 export const steps = {
   continentSelection: 0,
-  continentConfirmation: 1,
+  // continentConfirmation: 1,
+  optionStep: 1,
   messageDrawing: 2,
   messagePlacing: 3,
+  messageEditing: 4,
 };
 
 export const CONTINENT_NAMES = {

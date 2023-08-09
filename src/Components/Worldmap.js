@@ -12,7 +12,7 @@ import {
 import { OMFSIMPATH_LOGO } from "../Logo";
 import { useState } from "react";
 
-import ContinentConfirmationStep from "./Steps/ContinentConfirmation";
+import OptionStep from "./Steps/OptionStep";
 import DrawingStep from "./Steps/DrawingStep";
 import PlacementStep from "./Steps/PlacementStep";
 import {
@@ -63,7 +63,7 @@ function Worldmap() {
       duration: ANIMATION_DURATION,
       attr: { viewBox: VIEWBOXES[continent.id] },
       onComplete: () => {
-        if (!devMode) setCurrentStep(steps.continentConfirmation);
+        if (!devMode) setCurrentStep(steps.optionStep);
       },
     });
   };
@@ -160,33 +160,35 @@ function Worldmap() {
       {/* -------------------------- OMFS IMPATH LOGO -------------------------- */}
       <OMFSIMPATH_LOGO currentStep={currentStep} />
       {/* ------------------------ STEP COMPONENTS ------------------------ */}
-      {currentStep < 3 && currentContinent !== "" && !devMode && (
-        <div
-          className={`overlay ${
-            currentStep === steps.continentConfirmation ||
-            currentStep === steps.messageDrawing
-              ? "active"
-              : ""
-          }`}
-        >
-          {currentStep === steps.continentConfirmation && (
-            <ContinentConfirmationStep
-              currentContinent={currentContinent}
-              handleReturnClick={handleReturnClick}
-              setCurrentStep={setCurrentStep}
-            />
-          )}
-          {currentStep === steps.messageDrawing && (
-            <DrawingStep
-              handleReturnClick={handleReturnClick}
-              currentContinent={currentContinent}
-              nextStep={nextStep}
-              setCurrentMessage={setCurrentMessage}
-              setDataUrl={setDataUrl}
-            />
-          )}
-        </div>
+      {currentStep === steps.optionStep && (
+        <OptionStep
+          currentContinent={currentContinent}
+          handleReturnClick={handleReturnClick}
+          setCurrentStep={setCurrentStep}
+        />
       )}
+      {currentStep === steps.messageDrawing &&
+        currentContinent !== "" &&
+        !devMode && (
+          <div
+            className={`overlay ${
+              currentStep === steps.optionStep ||
+              currentStep === steps.messageDrawing
+                ? "active"
+                : ""
+            }`}
+          >
+            {currentStep === steps.messageDrawing && (
+              <DrawingStep
+                handleReturnClick={handleReturnClick}
+                currentContinent={currentContinent}
+                nextStep={nextStep}
+                setCurrentMessage={setCurrentMessage}
+                setDataUrl={setDataUrl}
+              />
+            )}
+          </div>
+        )}
       {currentStep === steps.messagePlacing && (
         <PlacementStep
           handleReturnClick={handleReturnClick}
@@ -196,8 +198,7 @@ function Worldmap() {
           currentContinent={currentContinent}
         />
       )}
-      {/* ------------------------ DEV MODE ------------------------ */}
-      {((currentContinent === "" || devMode) && !setPlaying) && (
+      {currentStep === steps.messageEditing && (
         <DevMode
           devMode={devMode}
           setDevMode={setDevMode}

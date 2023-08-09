@@ -1,5 +1,5 @@
-const DOMAIN = "192.168.0.152"
-// const DOMAIN = "localhost"
+// const DOMAIN = "192.168.0.152"
+const DOMAIN = "localhost"
 
 const PORT = 5000
 
@@ -52,6 +52,17 @@ export async function updateMessages(messages) {
 export async function updateMessage(message) {
   await fetch(BASE_URL + "/message", {
     method: "put",
+    body: JSON.stringify(message),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}
+
+// Remove a single message in the database
+export async function removeMessage(message) {
+  await fetch(BASE_URL + "/message", {
+    method: "delete",
     body: JSON.stringify(message),
     headers: {
       "Content-Type": "application/json",

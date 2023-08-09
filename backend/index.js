@@ -103,7 +103,30 @@ app.put("/messages", async (req, res) => {
 // Update a single message in the database
 app.put("/message", async (req, res) => {
   const request = req.body;
-  const updatedMessage = req.body;
+
+  try {
+    const { dataURL, xcoord, ycoord, width, height } =
+      request;
+    await Message.findOneAndUpdate(
+      { dataURL },
+      {
+        xcoord,
+        ycoord,
+        width,
+        height,
+      }
+    );
+    console.log(`Message with dataURL ${dataURL} updated successfully.`);
+    res.status(200).send(`Message with dataURL ${dataURL} updated successfully.`);
+  } catch (error) {
+    console.error("Failed to update message:", error);
+    res.status(500).send("Failed to update message.");
+  }
+});
+
+// Remove a single message in the database
+app.delete("/message", async (req, res) => {
+  const request = req.body;
 
   try {
     const { dataURL, xcoord, ycoord, width, height } =

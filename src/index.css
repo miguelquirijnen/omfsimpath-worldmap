@@ -13,14 +13,14 @@ body {
 }
 
 canvas {
-  stroke: #64020e;
+  stroke: #276578;
   stroke-width: 0.25;
 }
 
 .wrapper {
   height: 100vh;
   width: 100vw;
-  background-color: #d6cfd1;
+  background-color: #f1f8fa;
   overflow-x: hidden;
   overflow-y: hidden;
 }
@@ -74,7 +74,7 @@ canvas {
 .button {
   margin: 10px;
   width: auto;
-  background: #64020e;
+  background: #387dac;
   border-radius: 11px;
   box-sizing: border-box;
   color: #fff;
@@ -96,7 +96,7 @@ canvas {
 }
 
 .button:hover {
-  background: #280106;
+  background: #276578;
 }
 
 .returnButton {
@@ -111,18 +111,16 @@ canvas {
 /** SVG WORLDMAP **/
 .continent {
   position: relative;
-  fill: rgb(56,124,172);
-  stroke: rgb(56,124,172);
-  /* fill: #64020e; */
-  /* stroke: #64020e; */
+  fill: #387dac;
+  stroke: #387dac;
   stroke-width: 1.5;
   transition: fill 0.9s ease, stroke 0.9s ease; 
 }
 
 .continent-selected {
   position: relative;
-  fill: #47010c;
-  stroke: #47010c;
+  fill: #276578;
+  stroke: #276578;
   stroke-width: 1.5;
   cursor: default;
   transition: 1s;
@@ -130,30 +128,30 @@ canvas {
 
 .continent-dev-selected {
   position: relative;
-  fill: #57030f;
-  stroke: #57030f;
+  fill: #276578;
+  stroke: #276578;
   stroke-width: 1.5;
 }
 
 .continent-dev-unselected {
   position: relative;
-  fill: #64020e;
-  stroke: #64020e;
+  fill: #387dac;
+  stroke: #387dac;
   stroke-width: 1.5;
 }
 
 .continent-unselected {
   position: relative;
-  fill: #64020e;
-  stroke: #64020e;
+  fill: #387dac;
+  stroke: #387dac;
   stroke-width: 1.5;
   cursor: default;
   transition: 1s
 }
 
 .continent:hover {
-  fill: #57030f;
-  stroke: #57030f;
+  fill: #276578;
+  stroke: #276578;
   stroke-width: 1.5;
   transition: 1s;
   cursor: pointer;
@@ -225,13 +223,11 @@ h1 {
 
 .omfsimpath-logo {
   width: 20vw;
-  /* fill: rgb(100, 2, 14, 0.9); */
-  fill: rgb(56,124,172, 0.9)
+  fill: #387dac
 }
 
 .omfsimpath-logo-active {
   width: 100pt;
-  /* fill: rgb(100, 2, 14, 0.3); */
-  fill: rgb(56,124,172, 0.3)
+  fill: #276578
 }
 

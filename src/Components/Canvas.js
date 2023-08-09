@@ -2,10 +2,10 @@ import React, { useState, useRef, useEffect } from "react";
 
 const WIDTH_VW_FACTOR = 50;
 const HEIGHT_VH_FACTOR = 50;
-const DEFAULT_BG = "rgba(100, 2, 14,1)";
-const CONTRAST_BG = "rgba(255,255,255,1)";
+const DEFAULT_BG = "#387dac";
+const CONTRAST_BG = "#f1f8fa";
 const DEFAULT_COLOR = "white";
-const CONTRAST_COLOR = "rgba(128, 0, 32)";
+const CONTRAST_COLOR = "#276578";
 
 const Canvas = ({ width, height }) => {
   const [drawing, setDrawing] = useState(false);
@@ -131,7 +131,7 @@ const canvasContainerStyle = {
 
 const canvasStyle = {
   border: "1 px solid black",
-  backgroundColor: "rgba(128, 0, 32,0.8)",
+  backgroundColor: "#276578",
   borderRadius: "10px", // Add round border
   boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)", // Add shadow effect
   width: `${WIDTH_VW_FACTOR}vw`,

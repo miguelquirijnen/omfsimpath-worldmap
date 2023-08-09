@@ -1,0 +1,7 @@
+original: #387dac
+darker: #276578
+very light: #D4F5FF
+lightblue: #A9EAFF
+white: #FFFFFF
+
+bg: #f1f8fa

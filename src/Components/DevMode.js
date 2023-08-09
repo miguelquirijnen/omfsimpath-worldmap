@@ -109,8 +109,8 @@ const DevMode = ({
         xcoord: selectedMessage.getBBox().x,
         ycoord: selectedMessage.getBBox().y,
         width: selectedMessage.getBBox().width,
-        height: selectedMessage.getBBox().height
-      })
+        height: selectedMessage.getBBox().height,
+      });
     }
 
     setSelectedMessage(newMessage);
@@ -146,7 +146,6 @@ const DevMode = ({
           msgElement.setAttribute("class", "message-selectable");
           interact(selectedMessage).unset();
         });
-
     }
   }, [
     devMode,
@@ -233,26 +232,8 @@ const DevMode = ({
   };
 
   const handleSave = async (e) => {
-    // const group = document.getElementById(currentContinent);
-    // const toSend = messages
-    //   .filter((msg) => msg.continent === currentContinent)
-    //   .map((msg) => {
-    //     const query = `image[href="${msg.dataURL}"]`;
-    //     const msgElement = group.querySelector(query);
-    //     return {
-    //       dataURL: msgElement.href.baseVal,
-    //       xcoord: msgElement.getBBox().x,
-    //       ycoord: msgElement.getBBox().y,
-    //       width: msgElement.getBBox().width,
-    //       height: msgElement.getBBox().height,
-    //     };
-    //   });
-    // // await updateMessages(toSend);
     handleReturnClick();
   };
-
-  const downloadSVGText = `Download map as SVG`;
-  const downloadPNGText = `Download all messages as ZIP file`;
   const returnText = `Return to main view`;
   const saveText = `Save changes`;
 
@@ -261,24 +242,7 @@ const DevMode = ({
 
   return (
     <div>
-      <div style={iconContainterStyle}>
-        <SettingsIcon
-          style={{ color: devMode ? `green` : `#64020e` }}
-          onClick={handleDevClick}
-        />
-        {devMode && <p style={textStyle}>DEVMODE ON</p>}
-      </div>
-      {devMode && currentContinent === "" && (
-        <div style={buttonContainerStyle}>
-          <button className="button" onClick={handleDownloadSVG}>
-            {downloadSVGText}
-          </button>
-          <button className="button" onClick={handleDownloadImages}>
-            {downloadPNGText}
-          </button>
-        </div>
-      )}
-      {devMode && currentContinent && (
+      {currentContinent && (
         <div style={buttonContainerStyle}>
           <button
             className="button"
@@ -296,10 +260,18 @@ const DevMode = ({
       )}
       {selectedMessage && (
         <div style={zoomContainerStyle}>
-          <button className="button" style={zoomButtonStyle} onClick={(e) => zoomObjectIn(e)}>
+          <button
+            className="button"
+            style={handleEditButtonzoomButtonStyle}
+            onClick={(e) => zoomObjectIn(e)}
+          >
             {zoomIn}
           </button>
-          <button className="button" style={zoomButtonStyle} onClick={(e) => zoomObjectOut(e)}>
+          <button
+            className="button"
+            style={zoomButtonStyle}
+            onClick={(e) => zoomObjectOut(e)}
+          >
             {zoomOut}
           </button>
         </div>
@@ -342,11 +314,11 @@ const iconContainterStyle = {
 const textStyle = {
   marginLeft: "10px",
   fontWeight: "bold",
-  width: "auto"
+  width: "auto",
 };
 
 const zoomButtonStyle = {
-  width: "50px"
-}
+  width: "50px",
+};
 
 export default DevMode;
