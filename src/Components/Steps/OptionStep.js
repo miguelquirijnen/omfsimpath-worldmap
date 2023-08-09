@@ -11,7 +11,7 @@ function OptionStep({ currentContinent, handleReturnClick, setCurrentStep }) {
   };
 
 
-  const headerText = `${CONTINENT_NAMES[currentContinent]}`;
+  const headerText = `Selected continent: ${CONTINENT_NAMES[currentContinent]}`;
   const addText = `Leave a message`;
   const editText = `Edit messages`;
   const returnText = `Return`;

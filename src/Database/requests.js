@@ -40,7 +40,7 @@ export async function fetchMessages() {
 // Update all gives messages
 export async function updateMessages(messages) {
   await fetch(BASE_URL + "/messages", {
-    method: "put",
+    method: "PUT",
     body: JSON.stringify(messages),
     headers: {
       "Content-Type": "application/json",
@@ -51,7 +51,7 @@ export async function updateMessages(messages) {
 // Update a single message in the database
 export async function updateMessage(message) {
   await fetch(BASE_URL + "/message", {
-    method: "put",
+    method: "PUT",
     body: JSON.stringify(message),
     headers: {
       "Content-Type": "application/json",
@@ -62,7 +62,7 @@ export async function updateMessage(message) {
 // Remove a single message in the database
 export async function removeMessage(message) {
   await fetch(BASE_URL + "/message", {
-    method: "delete",
+    method: "DELETE",
     body: JSON.stringify(message),
     headers: {
       "Content-Type": "application/json",

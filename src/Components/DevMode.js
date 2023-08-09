@@ -4,7 +4,7 @@ import interact from "interactjs";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { VIEWBOXES } from "../constants";
-import { updateMessage, updateMessages } from "../Database/requests";
+import { updateMessage, removeMessage } from "../Database/requests";
 
 const DevMode = ({
   devMode,
@@ -93,11 +93,6 @@ const DevMode = ({
     selectedMessage.style.height = newHeight;
     selectedMessage.style.x = initX + moveToRight;
     selectedMessage.style.y = initY + moveDown;
-  };
-
-  const handleDevClick = () => {
-    if (currentContinent) return;
-    setDevMode(!devMode);
   };
 
   const handleSelectedMessageClick = (newMessage) => {
@@ -231,38 +226,70 @@ const DevMode = ({
     URL.revokeObjectURL(url);
   };
 
-  const handleSave = async (e) => {
-    handleReturnClick();
-  };
   const returnText = `Return to main view`;
-  const saveText = `Save changes`;
-
+  const deleteText = `Delete selected message`;
+  const headerText = `World Map Editor: ${currentContinent.toUpperCase()}`;
   const zoomIn = `+`;
   const zoomOut = `-`;
+
+  const deleteSelectedMessage = () => {
+    if (!selectedMessage) return;
+    // Unset previous if any
+    if (selectedMessage) {
+      interact(selectedMessage).unset();
+      removeMessage({
+        dataURL: selectedMessage.href.baseVal,
+        xcoord: selectedMessage.getBBox().x,
+        ycoord: selectedMessage.getBBox().y,
+        width: selectedMessage.getBBox().width,
+        height: selectedMessage.getBBox().height,
+      });
+    }
+    setSelectedMessage()
+    return 
+  }
 
   return (
     <div>
       {currentContinent && (
-        <div style={buttonContainerStyle}>
-          <button
-            className="button"
-            onClick={(e) => {
-              setSelectedMessage();
-              handleReturnClick(e);
-            }}
-          >
-            {returnText}
-          </button>
-          <button className="button" onClick={(e) => handleSave(e)}>
-            {saveText}
-          </button>
-        </div>
+        <>
+          <div style={headerContainerStyle}>
+            <>
+              <h2 style={headerTextStyle}>
+                <i>{headerText}</i>
+              </h2>
+            </>
+          </div>
+          <div style={buttonContainerStyle}>
+            <button
+              className="button"
+              onClick={(e) => {
+                setSelectedMessage();
+                handleReturnClick(e);
+              }}
+            >
+              {returnText}
+            </button>
+            {selectedMessage && (
+              <button
+                className="button"
+                onClick={(e) => {
+                  setSelectedMessage();
+                  deleteSelectedMessage();
+                  handleReturnClick(e);
+                }}
+              >
+                {deleteText}
+              </button>
+            )}
+          </div>
+        </>
       )}
       {selectedMessage && (
         <div style={zoomContainerStyle}>
           <button
             className="button"
-            style={handleEditButtonzoomButtonStyle}
+            style={zoomButtonStyle}
             onClick={(e) => zoomObjectIn(e)}
           >
             {zoomIn}
@@ -303,18 +330,23 @@ const zoomContainerStyle = {
   borderRadius: "12px",
 };
 
-const iconContainterStyle = {
-  display: "flex",
+const headerContainerStyle = {
   position: "absolute",
-  top: "10px",
-  left: "10px",
+  display: "flex",
+  justifyContent: "center",
+  top: "5%",
   width: "auto",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
 };
 
-const textStyle = {
-  marginLeft: "10px",
+const headerTextStyle = {
+  textAlign: "center",
+  color: "white",
+  fontSize: "3vh",
   fontWeight: "bold",
-  width: "auto",
+  textShadow: "2px 2px 4px rgba(0, 0, 0, 0.6)",
+  cursor: "default",
 };
 
 const zoomButtonStyle = {

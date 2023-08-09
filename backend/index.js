@@ -40,12 +40,13 @@ app.get("/", async (req, resp) => {
 app.post("/message", async (req, res) => {
   const request = req.body;
   try {
+    console.log("width ", request.width)
     const newMessage = new Message({
       dataURL: request.dataURL,
       xcoord: request.xcoord,
       ycoord: request.ycoord,
-      width: request.width,
-      height: request.height,
+      width: request.width === "au" ? "auto" : request.width ,
+      height: request.height === "au" ? "auto" : request.height,
       continent: request.continent,
       date: new Date(),
     });
@@ -116,7 +117,7 @@ app.put("/message", async (req, res) => {
         height,
       }
     );
-    console.log(`Message with dataURL ${dataURL} updated successfully.`);
+    console.log(`Message updated successfully.`);
     res.status(200).send(`Message with dataURL ${dataURL} updated successfully.`);
   } catch (error) {
     console.error("Failed to update message:", error);
@@ -131,7 +132,7 @@ app.delete("/message", async (req, res) => {
   try {
     const { dataURL, xcoord, ycoord, width, height } =
       request;
-    await Message.findOneAndUpdate(
+    await Message.deleteOne(
       { dataURL },
       {
         xcoord,
@@ -140,8 +141,8 @@ app.delete("/message", async (req, res) => {
         height,
       }
     );
-    console.log(`Message with dataURL ${dataURL} updated successfully.`);
-    res.status(200).send(`Message with dataURL ${dataURL} updated successfully.`);
+    console.log(`Message deleted successfully.`);
+    res.status(200).send(`Message deleted successfully.`);
   } catch (error) {
     console.error("Failed to update message:", error);
     res.status(500).send("Failed to update message.");
