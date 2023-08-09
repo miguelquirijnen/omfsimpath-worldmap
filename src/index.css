@@ -1,0 +1,237 @@
+/* ---- style.css ---- */
+* {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+}
+
+body {
+  margin: auto;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+canvas {
+  stroke: #64020e;
+  stroke-width: 0.25;
+}
+
+.wrapper {
+  height: 100vh;
+  width: 100vw;
+  background-color: #d6cfd1;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.worldmap-container {
+  position: absolute;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+
+.worldmap {
+  position: "absolute";
+  height: 100vh;
+  margin: auto;
+  display: block;
+  z-index: 3;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+/** DRAGABLE OBJECT **/
+.draggable-object {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/** CONFIRMATION STEP **/
+
+
+.confirmMessageButton {
+  position: absolute;
+  bottom: 10px;
+  right: 150px;
+  width: 100px;
+  height: 50px;
+}
+
+.confirmContinentButton {
+  position: absolute;
+  bottom: 10px;
+  right: 150px;
+  width: 100px;
+  height: 50px;
+}
+
+
+
+.button {
+  margin: 10px;
+  width: auto;
+  background: #64020e;
+  border-radius: 11px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.15em;
+  font-weight: 700;
+  line-height: 33.4929px;
+  padding: .8em 1em;
+  text-align: center;
+  text-decoration: none;
+  text-decoration-skip-ink: auto;
+  text-shadow: rgba(0, 0, 0, .3) 1px 1px 1px;
+  text-underline-offset: 1px;
+  transition: all .2s ease-in-out;
+  touch-action: manipulation;
+  word-break: break-word;
+  border: 0; 
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover {
+  background: #280106;
+}
+
+.returnButton {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 100px;
+  height: 50px;
+}
+
+
+/** SVG WORLDMAP **/
+.continent {
+  position: relative;
+  fill: rgb(56,124,172);
+  stroke: rgb(56,124,172);
+  /* fill: #64020e; */
+  /* stroke: #64020e; */
+  stroke-width: 1.5;
+  transition: fill 0.9s ease, stroke 0.9s ease; 
+}
+
+.continent-selected {
+  position: relative;
+  fill: #47010c;
+  stroke: #47010c;
+  stroke-width: 1.5;
+  cursor: default;
+  transition: 1s;
+}
+
+.continent-dev-selected {
+  position: relative;
+  fill: #57030f;
+  stroke: #57030f;
+  stroke-width: 1.5;
+}
+
+.continent-dev-unselected {
+  position: relative;
+  fill: #64020e;
+  stroke: #64020e;
+  stroke-width: 1.5;
+}
+
+.continent-unselected {
+  position: relative;
+  fill: #64020e;
+  stroke: #64020e;
+  stroke-width: 1.5;
+  cursor: default;
+  transition: 1s
+}
+
+.continent:hover {
+  fill: #57030f;
+  stroke: #57030f;
+  stroke-width: 1.5;
+  transition: 1s;
+  cursor: pointer;
+}
+
+.svg-container {
+  width: "100vw";
+}
+
+.overlay {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.0); /* Adjust the opacity (0.5) to your preference */
+  z-index: 1; /*Make sure the overlay is above other elements*/
+  transition: background-color 0.4s ease; 
+}
+
+.overlay.active {
+  background-color: rgba(0, 0, 0, 0.8); /* Adjust the opacity (0.5) to your preference */
+}
+
+.img-container {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100vw;
+  height: 100vh;
+}
+
+.message-group {
+  width: "100vw";
+}
+
+.message {
+  z-index: 999;
+  pointer-events: none;
+}
+
+.message-selectable {
+  cursor: default;
+  z-index: 999;
+  pointer-events: auto;
+}
+
+.message-selectable:hover {
+  cursor: default;
+  z-index: 999;
+  pointer-events: auto;
+  filter: invert(50%);
+}
+
+h1 {
+  margin: 20px;
+}
+
+.logoBox {
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  margin-left: 40px;
+  margin-bottom: 40px;
+  z-index: 1;
+  width: auto;
+}
+
+.omfsimpath-logo {
+  width: 20vw;
+  /* fill: rgb(100, 2, 14, 0.9); */
+  fill: rgb(56,124,172, 0.9)
+}
+
+.omfsimpath-logo-active {
+  width: 100pt;
+  /* fill: rgb(100, 2, 14, 0.3); */
+  fill: rgb(56,124,172, 0.3)
+}
+
